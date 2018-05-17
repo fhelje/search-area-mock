@@ -44,7 +44,7 @@ const FilterList = styled.div`
 
 const FilterLabel = styled.span`
   font-weight: 700;
-  padding: 0.375rem 0.75rem;
+  padding: 0.375rem 0;
   line-height: 1.5;
   font-size: 1rem;
   border: 1px solid white;
@@ -63,7 +63,7 @@ export const SearchFilterWrapper = styled.div`
 
 const ClearAll = styled.div`
   font-weight: 700;
-  padding: 0.375rem 0.75rem;
+  padding: 0.375rem 0;
   line-height: 1.5;
   font-size: 1rem;
   border: 1px solid white;
@@ -100,69 +100,22 @@ const SearchArea = () => {
             color="primary"
             outlined={true}
             filter={true}
+            click={e => {
+              console.log(e);
+            }}
           />
-          <FilterButton
-            label="Employee"
-            value="Pelle"
-            color="secondary"
-            outlined={true}
-            filter={true}
-          />
-          <FilterButton
-            label="Date"
-            value="All"
-            color="secondary"
-            outlined={true}
-            filter={true}
-          />
+          <FilterButton label="Employee" value="Pelle" color="secondary" outlined={true} filter={true} />
+          <FilterButton label="Date" value="All" color="secondary" outlined={true} filter={true} />
           <FilterButton label="Employee" color="success" outlined={true} />
-          <FilterButton
-            label="Employee"
-            color="success"
-            outlined={true}
-            disabled={true}
-          />
-          <FilterButton
-            label="Employee"
-            value="Pelle"
-            color="warning"
-            disabled={true}
-          />
-          <FilterButton
-            label="Employee"
-            value="Pelle"
-            color="danger"
-            outlined={true}
-          />
-          <FilterButton
-            label="Employee"
-            value="Pelle"
-            color="primary"
-            outlined={true}
-          />
-          <FilterButton
-            label="Job Id"
-            value="123412"
-            color="secondary"
-            outlined={true}
-          />
+          <FilterButton label="Employee" color="success" outlined={true} disabled={true} />
+          <FilterButton label="Employee" value="Pelle" color="warning" disabled={true} />
+          <FilterButton label="Employee" value="Pelle" color="danger" outlined={true} />
+          <FilterButton label="Employee" value="Pelle" color="primary" outlined={true} />
+          <FilterButton label="Job Id" value="123412" color="secondary" outlined={true} />
           <FilterButton label="Employee" color="success" outlined={true} />
           <FilterButton label="Employee" value="Pelle" color="warning" />
-          <FilterButton
-            label="Employee"
-            value="Pelle"
-            color="danger"
-            filter={true}
-            disabled={true}
-          />
-          <FilterButton
-            label="Employee"
-            value="Pelle"
-            color="danger"
-            filter={true}
-            outlined={true}
-            disabled={true}
-          />
+          <FilterButton label="Employee" value="Pelle" color="danger" filter={true} disabled={true} />
+          <FilterButton label="Employee" value="Pelle" color="danger" filter={true} outlined={true} disabled={true} />
         </FilterList>
         <ClearAll>
           <HoverIcon>
