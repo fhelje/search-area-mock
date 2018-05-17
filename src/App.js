@@ -35,15 +35,63 @@ const Search = styled.div`
   background-color: white;
 `;
 
+const filters = [
+  {
+    label: "Cm",
+    value: "Frank Heljebrandt",
+  },
+  {
+    label: "Date",
+    value: "2018-05-01 -> Today",
+  },
+  {
+    label: "Job Id",
+    value: "2018-05-01 -> Today",
+  },
+  {
+    label: "Client",
+    value: "Rn Client Betasales regression 150902",
+  },
+];
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filters: [...filters],
+    };
+  }
+
+  reset = () => {
+    const f = [...filters];
+    this.setState({ filters: f });
+  };
+
+  removeFilter = label => {
+    console.log(label);
+    const filters = this.state.filters.filter(x => {
+      return x.label != label;
+    });
+    this.setState({ filters: filters });
+  };
+
+  clearAllFilters = () => {
+    this.setState({ filters: [] });
+  };
+
   render() {
     return (
       <Container>
         <Main>
           <h1>Search area</h1>
           <Search>
-            <SearchArea />
+            <SearchArea
+              filters={this.state.filters}
+              click={label => this.removeFilter(label)}
+              clear={() => this.clearAllFilters()}
+            />
           </Search>
+          <h4 onClick={() => this.reset()}>Reset</h4>
         </Main>
       </Container>
     );

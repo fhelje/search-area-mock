@@ -69,8 +69,9 @@ const ClearAll = styled.div`
   border: 1px solid white;
   color: ${props => props.color && themedColors[props.color]};
 `;
-
+const usedFilterColor = themedColors["info"];
 const ClearAllLabel = styled.span`
+  color: ${usedFilterColor};
   &:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -79,49 +80,42 @@ const ClearAllLabel = styled.span`
 `;
 
 const HoverIcon = styled.span`
+  color: ${usedFilterColor};
   &:hover {
     cursor: pointer;
     text-decoration: underline;
   }
 `;
 
-const SearchArea = () => {
+const dummyClick = () => {
+  console.log("click");
+};
+
+const SearchArea = ({ filters, click, clear }) => {
   return (
     <Wrapper>
       <SearchFilters>
         <SearchFilterWrapper />
       </SearchFilters>
       <SearchUsedFilters>
-        <FilterLabel color="primary">Selected</FilterLabel>
+        <FilterLabel color="info">Selected</FilterLabel>
         <FilterList>
-          <FilterButton
-            label="Employee"
-            value="Pelle"
-            color="primary"
-            outlined={true}
-            filter={true}
-            click={e => {
-              console.log(e);
-            }}
-          />
-          <FilterButton label="Employee" value="Pelle" color="secondary" outlined={true} filter={true} />
-          <FilterButton label="Date" value="All" color="secondary" outlined={true} filter={true} />
-          <FilterButton label="Employee" color="success" outlined={true} />
-          <FilterButton label="Employee" color="success" outlined={true} disabled={true} />
-          <FilterButton label="Employee" value="Pelle" color="warning" disabled={true} />
-          <FilterButton label="Employee" value="Pelle" color="danger" outlined={true} />
-          <FilterButton label="Employee" value="Pelle" color="primary" outlined={true} />
-          <FilterButton label="Job Id" value="123412" color="secondary" outlined={true} />
-          <FilterButton label="Employee" color="success" outlined={true} />
-          <FilterButton label="Employee" value="Pelle" color="warning" />
-          <FilterButton label="Employee" value="Pelle" color="danger" filter={true} disabled={true} />
-          <FilterButton label="Employee" value="Pelle" color="danger" filter={true} outlined={true} disabled={true} />
+          {filters.map(x => (
+            <FilterButton
+              label={x.label}
+              value={x.value}
+              color={"info"}
+              outlined={true}
+              filter={true}
+              click={() => click(x.label)}
+            />
+          ))}
         </FilterList>
         <ClearAll>
           <HoverIcon>
             <FontAwesomeIcon icon={faTrashAlt} />
           </HoverIcon>
-          <ClearAllLabel>Clear all filters</ClearAllLabel>
+          <ClearAllLabel onClick={() => clear()}>Clear all filters</ClearAllLabel>
         </ClearAll>
       </SearchUsedFilters>
     </Wrapper>
